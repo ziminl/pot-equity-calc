@@ -17,9 +17,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_calculateButton_clicked()
 {
     int outs = ui->outsSpinBox->value();
+    
     double potSize = ui->potSizeSpinBox->value();
     double betSize = ui->betSizeSpinBox->value();
-    int totalCards = 52 - 2; // Assuming 2 cards are known (simplification)
+    
+    int totalCards = 52 - 2; 
 
     double equity = calculatePotEquity(outs, potSize, betSize, totalCards);
     ui->potEquityLabel->setText(QString::number(equity, 'f', 2));
@@ -27,10 +29,11 @@ void MainWindow::on_calculateButton_clicked()
 
 double MainWindow::calculatePotEquity(int outs, double potSize, double betSize, int totalCards)
 {
-    int unseenCards = totalCards - 2; // Assuming 2 cards are known
-    long long favorableOutcomes = combination(outs, 1); // Number of favorable outcomes
+    int unseenCards = totalCards - 2; 
+    long long favorableOutcomes = combination(outs, 1); 
 
-    long long totalOutcomes = combination(unseenCards, 1); // Total possible outcomes
+    long long totalOutcomes = combination(unseenCards, 1); 
+    
     double winProbability = static_cast<double>(favorableOutcomes) / totalOutcomes;
     double betToPotRatio = betSize / potSize;
 
